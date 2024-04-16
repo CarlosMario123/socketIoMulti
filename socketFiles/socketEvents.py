@@ -24,12 +24,18 @@ def reciveDateHeart(data):
     socketio.emit("sendFrontHeart",json.dumps(datoPlus))
 
 
+
 @socketio.on("notifyStartTemp")
 @jwt_required()
-def notifyTemp():
-    datoPlus = {"key":1}
-    #Esto se enviara a la api de julian para que de aviso al esp32 para tomar temperatura
-    socketio.emit("sendApiTemp",json.dumps(datoPlus))
+def notifyTemp(data):  # Agregar un parámetro para recibir datos del evento
+    try:
+        datoPlus = {"key": 1}
+        # Esto se enviará a la API de julian para que avise al ESP32 para tomar la temperatura
+        print(datoPlus)
+        socketio.emit("sendApiTemp", json.dumps(datoPlus))
+    except Exception as e:
+        print(f"Error al emitir evento sendApiTemp: {e}")
+
 
 @socketio.on("reciveTempApi")
 @jwt_required()
@@ -37,3 +43,5 @@ def reciveDateTemperature(data):
     datoPlus = data
    
     socketio.emit("sendTempFront",json.dumps(datoPlus))
+    
+

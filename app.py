@@ -7,7 +7,7 @@ app.config['JWT_SECRET_KEY'] = '1234'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = False
 app.config['JWT_ALGORITHM'] = 'HS256'
 app.config['JWT_TOKEN_LOCATION'] = ['headers']
-CORS(app, origins="*")  # Habilita CORS para todas las rutas de la aplicación
+#CORS(app, origins="*")  # Habilita CORS para todas las rutas de la aplicación
 socketio = SocketIO(app,cors_allowed_origins='*')
 jwt = JWTManager(app)
 
